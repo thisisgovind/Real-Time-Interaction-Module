@@ -1,0 +1,183 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 3.9%; 
+  --foreground: 0 0% 98%;
+  
+  --card: 240 10% 10%; 
+  --card-foreground: 0 0% 98%;
+  
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  
+  --primary: 260 85% 65%; 
+  --primary-foreground: 0 0% 98%;
+  
+  --secondary: 220 70% 50%; 
+  --secondary-foreground: 0 0% 98%;
+  
+  --muted: 240 5% 25%; 
+  --muted-foreground: 240 5% 65%;
+  
+  --accent: 300 75% 60%; 
+  --accent-foreground: 0 0% 98%;
+  
+  --destructive: 0 70% 55%; 
+  --destructive-foreground: 0 0% 98%;
+  
+  --border: 240 5% 20%; 
+  --input: 240 5% 15%; 
+  --ring: 260 85% 75%; 
+  
+  --radius: 0.75rem;
+}
+
+.light {
+  --background: 0 0% 98%; /* Almost White */
+  --foreground: 240 10% 3.9%; /* Dark Blue-Gray */
+
+  --card: 0 0% 100%; /* White */
+  --card-foreground: 240 10% 3.9%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+
+  --primary: 260 80% 60%; /* Slightly adjusted Purple for light mode */
+  --primary-foreground: 0 0% 98%; /* White text on primary */
+
+  --secondary: 220 65% 45%; /* Slightly adjusted Blue for light mode */
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 240 5% 90%; /* Light Gray */
+  --muted-foreground: 240 5% 45%; /* Darker Gray */
+
+  --accent: 300 70% 55%; /* Slightly adjusted Pink for light mode */
+  --accent-foreground: 0 0% 98%;
+
+  --destructive: 0 65% 50%; /* Slightly adjusted Red for light mode */
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 240 5% 85%; /* Light border color */
+  --input: 240 5% 95%; /* Light input background */
+  --ring: 260 80% 70%; /* Lighter Purple for focus rings */
+}
+
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background: linear-gradient(135deg, hsl(var(--background)) 0%, color-mix(in srgb, hsl(var(--background)) 85%, hsl(var(--primary)) 15%) 100%);
+  color: hsl(var(--foreground));
+  font-feature-settings: "rlig" 1, "calt" 1;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.glass-effect {
+  background: hsla(var(--card) / 0.65); 
+  backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid hsla(var(--border) / 0.4);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.light .glass-effect {
+  background: hsla(var(--card) / 0.75);
+  backdrop-filter: blur(12px) saturate(120%);
+   border: 1px solid hsla(var(--border) / 0.6);
+}
+
+
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.poll-option {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.poll-option:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 12px 30px hsla(var(--primary) / 0.3);
+}
+
+.vote-bar {
+  background: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px hsla(var(--primary) / 0.5), 0 0 30px hsla(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px hsla(var(--primary) / 0.7), 0 0 50px hsla(var(--primary) / 0.5);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2.5s infinite ease-in-out;
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.text-emphasis {
+  color: hsl(var(--foreground));
+}
+.text-subtle {
+  color: hsl(var(--muted-foreground));
+}
+.text-on-primary {
+  color: hsl(var(--primary-foreground));
+}
+.text-on-accent {
+  color: hsl(var(--accent-foreground));
+}
+
+.button-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+.button-primary:hover {
+  background-color: color-mix(in srgb, hsl(var(--primary)) 90%, black 10%);
+}
+
+.button-outline {
+  border-color: hsl(var(--primary));
+  color: hsl(var(--primary));
+}
+.button-outline:hover {
+  background-color: hsla(var(--primary) / 0.1);
+  color: hsl(var(--primary));
+}
+
+input, textarea {
+  background-color: hsl(var(--input));
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+}
+input::placeholder, textarea::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+input:focus, textarea:focus {
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 2px hsla(var(--ring) / 0.5);
+}
